@@ -10,451 +10,128 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --green: #25D366;
-  --green-dark: #128C7E;
-  --green-dim: rgba(37,211,102,0.12);
-  --green-border: rgba(37,211,102,0.28);
-  --red: #ff4d4d;
-  --red-dim: rgba(255,77,77,0.1);
+  --green: #25D366; --green-dark: #128C7E;
+  --green-dim: rgba(37,211,102,0.12); --green-border: rgba(37,211,102,0.28);
+  --red: #ff4d4d; --red-dim: rgba(255,77,77,0.1);
   --blue: #4285f4;
-  --bg: #080d0a;
-  --bg2: #0e1610;
-  --surface: #131e15;
-  --surface2: #1a2a1e;
-  --surface3: #203227;
-  --border: rgba(37,211,102,0.1);
-  --border2: rgba(37,211,102,0.25);
-  --text: #e2f0e6;
-  --text2: #7ca888;
-  --text3: #3d6047;
-  --radius: 13px;
-  --radius-sm: 8px;
+  --bg: #080d0a; --bg2: #0e1610;
+  --surface: #131e15; --surface2: #1a2a1e; --surface3: #203227;
+  --border: rgba(37,211,102,0.1); --border2: rgba(37,211,102,0.25);
+  --text: #e2f0e6; --text2: #7ca888; --text3: #3d6047;
+  --radius: 13px; --radius-sm: 8px;
 }
-
-html, body {
-  height: 100%;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-.app {
-  max-width: 480px;
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ── HEADER ── */
-header {
-  padding: 20px 20px 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-  z-index: 20;
-}
-
-.logo {
-  width: 36px; height: 36px;
-  background: var(--green);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+.app { max-width: 480px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
+header { padding: 20px 20px 0; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; background: var(--bg); z-index: 20; }
+.logo { width: 36px; height: 36px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .logo svg { width: 20px; height: 20px; fill: #fff; }
-
 .header-text h1 { font-size: 16px; font-weight: 600; letter-spacing: -0.3px; }
 .header-text p  { font-size: 11px; color: var(--text2); margin-top: 1px; }
-
-/* ── TABS ── */
-.tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-  padding: 14px 20px 0;
-  position: sticky;
-  top: 64px;
-  background: var(--bg);
-  z-index: 19;
-}
-
-.tab-btn {
-  padding: 10px 12px;
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text2);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 7px;
-  transition: all 0.18s;
-  -webkit-tap-highlight-color: transparent;
-}
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 14px 20px 0; position: sticky; top: 64px; background: var(--bg); z-index: 19; }
+.tab-btn { padding: 10px 12px; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-sm); color: var(--text2); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: all 0.18s; -webkit-tap-highlight-color: transparent; }
 .tab-btn svg { width: 16px; height: 16px; }
-.tab-btn.active {
-  background: var(--green-dim);
-  border-color: var(--green-border);
-  color: var(--green);
-}
-
-.tab-divider {
-  height: 0.5px;
-  background: var(--border);
-  margin: 10px 20px 0;
-}
-
-/* ── PANELS ── */
+.tab-btn.active { background: var(--green-dim); border-color: var(--green-border); color: var(--green); }
+.tab-divider { height: 0.5px; background: var(--border); margin: 10px 20px 0; }
 .panel { display: none; padding: 16px 20px 40px; flex-direction: column; gap: 16px; }
 .panel.active { display: flex; }
-
-/* ── FORM ELEMENTS ── */
-.field-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 7px;
-  display: block;
+.field-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 7px; display: block; }
+input[type="text"], input[type="tel"], textarea, select {
+  width: 100%; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none;
 }
-
-input[type="text"], input[type="tel"], textarea {
-  width: 100%;
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s;
-  -webkit-appearance: none;
-}
-input[type="text"]:focus, input[type="tel"]:focus, textarea:focus {
-  border-color: var(--border2);
-}
+input[type="text"]:focus, input[type="tel"]:focus, textarea:focus, select:focus { border-color: var(--border2); }
 input::placeholder, textarea::placeholder { color: var(--text3); }
-
+select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%233d6047' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+select option { background: #131e15; color: var(--text); }
 textarea { resize: none; line-height: 1.6; min-height: 100px; }
 textarea#msg-text { min-height: 110px; }
-
 .hint { font-size: 11px; color: var(--text3); margin-top: 5px; padding-left: 2px; }
-
-/* ── BUTTONS ── */
-.btn-primary {
-  padding: 14px 18px;
-  background: var(--green);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
-  -webkit-tap-highlight-color: transparent;
-  width: 100%;
-}
+.btn-primary { padding: 14px 18px; background: var(--green); color: #fff; border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s, transform 0.1s; -webkit-tap-highlight-color: transparent; width: 100%; }
 .btn-primary:active { background: var(--green-dark); transform: scale(0.98); }
 .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-
-.btn-ghost {
-  padding: 11px 14px;
-  background: transparent;
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text2);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
-  -webkit-tap-highlight-color: transparent;
-  width: 100%;
-}
+.btn-ghost { padding: 11px 14px; background: transparent; border: 0.5px solid var(--border); border-radius: var(--radius); color: var(--text2); font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; transition: border-color 0.2s, color 0.2s; -webkit-tap-highlight-color: transparent; width: 100%; }
 .btn-ghost:active { border-color: var(--border2); color: var(--text); }
-
-.btn-danger {
-  padding: 8px 12px;
-  background: transparent;
-  border: 0.5px solid rgba(255,77,77,0.2);
-  border-radius: var(--radius-sm);
-  color: var(--red);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background 0.15s;
-  -webkit-tap-highlight-color: transparent;
-}
+.btn-danger { padding: 8px 12px; background: transparent; border: 0.5px solid rgba(255,77,77,0.2); border-radius: var(--radius-sm); color: var(--red); font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; transition: background 0.15s; -webkit-tap-highlight-color: transparent; }
 .btn-danger:active { background: var(--red-dim); }
-
-/* ── ADD CONTACT ROW ── */
-.add-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 8px;
-  align-items: end;
-}
-.add-row input { margin: 0; }
-.add-row .btn-add {
-  height: 44px;
-  padding: 0 16px;
-  background: var(--green);
-  border: none;
-  border-radius: var(--radius);
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.15s;
-  -webkit-tap-highlight-color: transparent;
-}
+.btn-sm { padding: 6px 12px; background: transparent; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); color: var(--text2); font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.15s; -webkit-tap-highlight-color: transparent; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+.btn-sm:active { border-color: var(--green); color: var(--green); }
+.btn-blue { padding: 8px 14px; background: rgba(66,133,244,0.18); border: 0.5px solid rgba(66,133,244,0.4); border-radius: var(--radius-sm); color: #4285f4; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; transition: background 0.15s; }
+.btn-blue:active { background: rgba(66,133,244,0.28); }
+.add-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; }
+.add-row .btn-add { height: 44px; padding: 0 16px; background: var(--green); border: none; border-radius: var(--radius); color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; -webkit-tap-highlight-color: transparent; }
 .add-row .btn-add:active { background: var(--green-dark); }
-
-/* ── CONTACT LIST ── */
 .contact-list { display: flex; flex-direction: column; gap: 7px; }
-
-.contact-item {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 11px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.contact-item .chk {
-  width: 20px; height: 20px;
-  border: 1.5px solid var(--border2);
-  border-radius: 5px;
-  background: transparent;
-  cursor: pointer;
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.15s;
-  -webkit-tap-highlight-color: transparent;
-}
-.contact-item .chk.checked {
-  background: var(--green);
-  border-color: var(--green);
-}
+.contact-item { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 11px 14px; display: flex; align-items: center; gap: 10px; }
+.contact-item .chk { width: 20px; height: 20px; border: 1.5px solid var(--border2); border-radius: 5px; background: transparent; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; -webkit-tap-highlight-color: transparent; }
+.contact-item .chk.checked { background: var(--green); border-color: var(--green); }
 .contact-item .chk svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2.5; display: none; }
 .contact-item .chk.checked svg { display: block; }
-
 .contact-info { flex: 1; min-width: 0; }
 .contact-name { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .contact-phone { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text2); margin-top: 1px; }
-
+.contact-item-actions { display: flex; gap: 5px; flex-shrink: 0; align-items: center; }
 .contact-item .btn-danger { padding: 5px 9px; font-size: 11px; }
-
-.empty-hint {
-  text-align: center;
-  padding: 32px 16px;
-  color: var(--text3);
-  font-size: 13px;
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-}
-
-/* ── SELECT ALL ROW ── */
-.select-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 4px 2px;
-}
+.empty-hint { text-align: center; padding: 32px 16px; color: var(--text3); font-size: 13px; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); }
+.select-row { display: flex; align-items: center; justify-content: space-between; padding: 4px 2px; }
 .select-row span { font-size: 12px; color: var(--text2); }
-.select-row button {
-  font-size: 12px;
-  color: var(--green);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  padding: 4px 0;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* ── MESSAGING TAB ── */
-.selected-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding: 10px 12px;
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  min-height: 48px;
-  align-items: flex-start;
-}
-.chip {
-  background: var(--green-dim);
-  border: 0.5px solid var(--green-border);
-  border-radius: 20px;
-  padding: 3px 10px;
-  font-size: 12px;
-  color: var(--green);
-  white-space: nowrap;
-}
+.select-row button { font-size: 12px; color: var(--green); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 4px 0; -webkit-tap-highlight-color: transparent; }
+.selected-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); min-height: 48px; align-items: flex-start; }
+.chip { background: var(--green-dim); border: 0.5px solid var(--green-border); border-radius: 20px; padding: 3px 10px; font-size: 12px; color: var(--green); white-space: nowrap; }
+.chip.new-chip { background: rgba(66,133,244,0.12); border-color: rgba(66,133,244,0.4); color: #4285f4; }
 .no-chips { font-size: 12px; color: var(--text3); align-self: center; }
-
-/* ── STATS ── */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 7px;
-}
-.stat-box {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 11px 8px;
-  text-align: center;
-}
-.stat-n { font-size: 22px; font-weight: 600; color: var(--green); line-height: 1; }
+.stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 7px; }
+.stat-box { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 11px 8px; text-align: center; }
+.stat-box.accepted-box { border-color: var(--green-border); }
+.stat-box.declined-box { border-color: rgba(255,77,77,0.2); }
+.stat-n { font-size: 20px; font-weight: 600; color: var(--green); line-height: 1; }
+.stat-n.red { color: var(--red); }
 .stat-l { font-size: 10px; color: var(--text3); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
-
 .prog-wrap { background: var(--surface); border-radius: 99px; height: 3px; overflow: hidden; }
 .prog-bar  { height: 3px; background: var(--green); border-radius: 99px; width: 0%; transition: width 0.4s ease; }
-
-/* ── SEND CARDS ── */
-.section-label {
-  font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--text3); margin-bottom: 10px;
-}
-
-.send-card {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 7px;
-  transition: opacity 0.3s;
-}
+.section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; }
+.send-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px 14px; display: flex; align-items: center; gap: 10px; margin-bottom: 7px; transition: opacity 0.3s; }
 .send-card.faded { opacity: 0.38; }
-
+.send-card.new-card { border-color: rgba(66,133,244,0.35); background: rgba(66,133,244,0.05); }
 .send-info { flex: 1; min-width: 0; }
 .send-name { font-size: 13px; font-weight: 500; color: var(--text); }
 .send-phone { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text2); margin-top: 1px; }
-
 .send-actions { display: flex; gap: 6px; flex-shrink: 0; align-items: center; }
-
-.open-btn {
-  background: var(--green);
-  border: none;
-  border-radius: var(--radius-sm);
-  color: #fff;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 12px;
-  cursor: pointer;
-  text-decoration: none;
-  display: flex; align-items: center; gap: 4px;
-  transition: background 0.15s;
-  -webkit-tap-highlight-color: transparent;
-}
+.open-btn { background: var(--green); border: none; border-radius: var(--radius-sm); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; padding: 6px 12px; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: background 0.15s; -webkit-tap-highlight-color: transparent; }
 .open-btn:active { background: var(--green-dark); }
 .open-btn svg { width: 12px; height: 12px; fill: #fff; }
-
-/* accept/decline icon buttons */
-.icon-btn {
-  width: 32px; height: 32px;
-  border-radius: var(--radius-sm);
-  border: 0.5px solid var(--border2);
-  background: transparent;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.18s;
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
-}
+.icon-btn { width: 32px; height: 32px; border-radius: var(--radius-sm); border: 0.5px solid var(--border2); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.18s; -webkit-tap-highlight-color: transparent; flex-shrink: 0; }
 .icon-btn svg { width: 15px; height: 15px; }
 .icon-btn.accept { color: var(--green); }
-.icon-btn.accept:hover, .icon-btn.accept.active {
-  background: var(--green-dim); border-color: var(--green);
-}
+.icon-btn.accept:hover, .icon-btn.accept.active { background: var(--green-dim); border-color: var(--green); }
 .icon-btn.decline { color: var(--red); }
-.icon-btn.decline:hover, .icon-btn.decline.active {
-  background: var(--red-dim); border-color: rgba(255,77,77,0.4);
-}
-
-.response-badge {
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 20px;
-  white-space: nowrap;
-}
+.icon-btn.decline:hover, .icon-btn.decline.active { background: var(--red-dim); border-color: rgba(255,77,77,0.4); }
+.response-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
 .response-badge.accepted { background: var(--green-dim); color: var(--green); }
 .response-badge.declined { background: var(--red-dim); color: var(--red); }
-
-/* ── ALL DONE ── */
-.all-done {
-  text-align: center;
-  padding: 16px;
-  background: var(--green-dim);
-  border: 0.5px solid var(--green-border);
-  border-radius: var(--radius);
-  color: var(--green);
-  font-weight: 600;
-  font-size: 14px;
-  display: none;
-}
-
-/* ── SECTION DIVIDER ── */
+.all-done { text-align: center; padding: 16px; background: var(--green-dim); border: 0.5px solid var(--green-border); border-radius: var(--radius); color: var(--green); font-weight: 600; font-size: 14px; display: none; }
 .divider { height: 0.5px; background: var(--border); }
-
-/* ── MODE TOGGLE ── */
-.mode-toggle {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
-.mode-btn {
-  padding: 10px 10px;
-  border-radius: var(--radius-sm);
-  border: 0.5px solid var(--border);
-  background: var(--surface);
-  color: var(--text2);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 7px;
-  transition: all 0.18s;
-  -webkit-tap-highlight-color: transparent;
-}
+.mode-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.mode-btn { padding: 10px 10px; border-radius: var(--radius-sm); border: 0.5px solid var(--border); background: var(--surface); color: var(--text2); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: all 0.18s; -webkit-tap-highlight-color: transparent; }
 .mode-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-.mode-btn.active-wa {
-  background: rgba(37,211,102,0.12);
-  border-color: rgba(37,211,102,0.5);
-  color: var(--green);
-}
-.mode-btn.active-sms {
-  background: rgba(66,133,244,0.12);
-  border-color: rgba(66,133,244,0.5);
-  color: #4285f4;
-}
+.mode-btn.active-wa { background: rgba(37,211,102,0.12); border-color: rgba(37,211,102,0.5); color: var(--green); }
+.mode-btn.active-sms { background: rgba(66,133,244,0.12); border-color: rgba(66,133,244,0.5); color: #4285f4; }
 .open-btn.sms { background: #4285f4; }
 .open-btn.sms:active { background: #2a6dd9; }
+.new-contacts-banner { background: rgba(66,133,244,0.1); border: 0.5px solid rgba(66,133,244,0.35); border-radius: var(--radius); padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.new-contacts-banner span { font-size: 13px; color: #4285f4; flex: 1; }
+.import-box { background: var(--surface); border: 0.5px dashed var(--border2); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.import-box-title { font-size: 12px; font-weight: 600; color: var(--text2); display: flex; align-items: center; gap: 6px; }
+.import-box-hint { font-size: 11px; color: var(--text3); }
+.import-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+input[type="file"] { display: none; }
+/* Modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.22s; }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius) var(--radius) 0 0; padding: 24px 20px 36px; width: 100%; max-width: 480px; transform: translateY(40px); transition: transform 0.22s; display: flex; flex-direction: column; gap: 14px; }
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-title { font-size: 15px; font-weight: 600; color: var(--text); display: flex; align-items: center; justify-content: space-between; }
+.modal-close { background: none; border: none; color: var(--text3); font-size: 18px; cursor: pointer; padding: 4px; line-height: 1; -webkit-tap-highlight-color: transparent; }
+.modal-actions { display: flex; gap: 8px; }
 </style>
 </head>
 <body>
@@ -482,19 +159,41 @@ textarea#msg-text { min-height: 110px; }
   </div>
   <div class="tab-divider"></div>
 
-  <!-- ═══════════════════════════════════════════
-       CONTACTS PANEL
-  ════════════════════════════════════════════ -->
+  <!-- CONTACTS PANEL -->
   <div class="panel active" id="panel-contacts">
 
     <div>
+      <span class="field-label">Country / Prefix</span>
+      <select id="country-select" onchange="saveCountry()"></select>
+    </div>
+
+    <div>
       <span class="field-label">Add Contact</span>
+      <input type="text" id="new-name" placeholder="Name" maxlength="40" style="margin-bottom:8px">
       <div class="add-row">
-        <input type="text" id="new-name" placeholder="Name" maxlength="40">
-        <input type="tel" id="new-phone" placeholder="12015550123">
+        <input type="tel" id="new-phone" placeholder="Phone number (digits only)">
         <button class="btn-add" onclick="addContact()" title="Add">+</button>
       </div>
-      <p class="hint">Include country code · No spaces or dashes · US: 12015550123</p>
+      <p class="hint" id="phone-hint">Country prefix will be added automatically</p>
+    </div>
+
+    <div class="import-box">
+      <div class="import-box-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Import Contacts
+      </div>
+      <div class="import-box-hint">Upload a CSV (Name, Phone columns) or paste a list of contacts.</div>
+      <div class="import-actions">
+        <label for="csv-file-input" class="btn-sm" style="cursor:pointer">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Upload CSV
+        </label>
+        <input type="file" id="csv-file-input" accept=".csv,.txt" onchange="importCSV(event)">
+        <button class="btn-sm" onclick="showPasteImport()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Paste text
+        </button>
+      </div>
     </div>
 
     <div class="divider"></div>
@@ -512,12 +211,9 @@ textarea#msg-text { min-height: 110px; }
     <button class="btn-danger" style="width:auto;align-self:flex-start;margin-top:4px" onclick="confirmDeleteAll()">
       🗑 Delete all contacts
     </button>
-
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       MESSAGE PANEL
-  ════════════════════════════════════════════ -->
+  <!-- MESSAGE PANEL -->
   <div class="panel" id="panel-message">
 
     <div>
@@ -552,87 +248,206 @@ textarea#msg-text { min-height: 110px; }
       <button class="btn-ghost" onclick="resetSession()" style="width:auto;padding:11px 14px" title="Reset session">↺</button>
     </div>
 
-    <div id="send-results" style="display:none;display:flex;flex-direction:column;gap:12px">
-
-      <div class="stats-row">
-        <div class="stat-box"><div class="stat-n" id="stat-total">0</div><div class="stat-l">Total</div></div>
-        <div class="stat-box"><div class="stat-n" id="stat-sent">0</div><div class="stat-l">Opened</div></div>
-        <div class="stat-box"><div class="stat-n" id="stat-left">0</div><div class="stat-l">Left</div></div>
-      </div>
-      <div class="prog-wrap"><div class="prog-bar" id="prog-bar"></div></div>
-
-      <div class="all-done" id="all-done">🎉 All links opened!</div>
-
-      <div>
-        <div class="section-label" id="cards-label">Tap Open → send in WhatsApp · ✓ = accepted · ✕ = declined</div>
-        <div id="send-cards"></div>
+    <div id="send-results" style="display:none">
+      <div id="new-contacts-banner" class="new-contacts-banner" style="display:none">
+        <span id="new-contacts-text">New contacts selected</span>
+        <button class="btn-blue" onclick="generateNewOnly()">+ New only</button>
       </div>
 
-      <button class="btn-ghost" onclick="resetSession()">↺ Reset / start new message</button>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="stats-row">
+          <div class="stat-box"><div class="stat-n" id="stat-total">0</div><div class="stat-l">Total</div></div>
+          <div class="stat-box"><div class="stat-n" id="stat-sent">0</div><div class="stat-l">Opened</div></div>
+          <div class="stat-box accepted-box"><div class="stat-n" id="stat-accepted">0</div><div class="stat-l">Accepted</div></div>
+          <div class="stat-box declined-box"><div class="stat-n red" id="stat-declined">0</div><div class="stat-l">Declined</div></div>
+        </div>
+        <div class="prog-wrap"><div class="prog-bar" id="prog-bar"></div></div>
+        <div class="all-done" id="all-done">🎉 All links opened!</div>
+        <div>
+          <div class="section-label" id="cards-label">Tap Open → send in WhatsApp · ✓ = accepted · ✕ = declined</div>
+          <div id="send-cards"></div>
+        </div>
+        <button class="btn-ghost" onclick="resetSession()">↺ Reset / start new message</button>
+      </div>
     </div>
 
   </div>
+</div>
 
+<!-- EDIT CONTACT MODAL -->
+<div class="modal-overlay" id="edit-modal" onclick="closeEditModal(event)">
+  <div class="modal">
+    <div class="modal-title">
+      Edit Contact
+      <button class="modal-close" onclick="closeEditModal()">✕</button>
+    </div>
+    <div>
+      <span class="field-label">Name</span>
+      <input type="text" id="edit-name" maxlength="40">
+    </div>
+    <div>
+      <span class="field-label">Phone (digits only)</span>
+      <input type="tel" id="edit-phone">
+      <p class="hint" id="edit-phone-hint"></p>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="saveEdit()" style="flex:1">Save Changes</button>
+      <button class="btn-ghost" onclick="closeEditModal()" style="width:auto;padding:11px 18px">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- PASTE IMPORT MODAL -->
+<div class="modal-overlay" id="paste-modal" onclick="closePasteModal(event)">
+  <div class="modal">
+    <div class="modal-title">
+      Paste Contacts
+      <button class="modal-close" onclick="closePasteModal()">✕</button>
+    </div>
+    <p style="font-size:12px;color:var(--text2)">One contact per line. Supported formats:<br>
+      <span style="font-family:'DM Mono',monospace;color:var(--text3);font-size:11px;display:block;margin-top:4px">
+        Name, Phone &nbsp;·&nbsp; Name Phone &nbsp;·&nbsp; Phone alone
+      </span>
+    </p>
+    <textarea id="paste-input" placeholder="John Smith, 12015550123&#10;Jane Doe 13475559876&#10;12125558888" style="min-height:140px"></textarea>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="importPasted()" style="flex:1">Import</button>
+      <button class="btn-ghost" onclick="closePasteModal()" style="width:auto;padding:11px 18px">Cancel</button>
+    </div>
+  </div>
 </div>
 
 <script>
-/* ═══════════════════ STATE ═══════════════════ */
-// contacts: [{ id, name, phone, selected }]  — persisted forever
-// session : [{ contactId, opened, response }] — persisted per message run
+/* ── COUNTRY DATA ── */
+const COUNTRIES = [
+  {code:'US',name:'United States',dial:'1'},
+  {code:'CA',name:'Canada',dial:'1'},
+  {code:'GB',name:'United Kingdom',dial:'44'},
+  {code:'AU',name:'Australia',dial:'61'},
+  {code:'IN',name:'India',dial:'91'},
+  {code:'MX',name:'Mexico',dial:'52'},
+  {code:'BR',name:'Brazil',dial:'55'},
+  {code:'DE',name:'Germany',dial:'49'},
+  {code:'FR',name:'France',dial:'33'},
+  {code:'IT',name:'Italy',dial:'39'},
+  {code:'ES',name:'Spain',dial:'34'},
+  {code:'NL',name:'Netherlands',dial:'31'},
+  {code:'BE',name:'Belgium',dial:'32'},
+  {code:'CH',name:'Switzerland',dial:'41'},
+  {code:'AT',name:'Austria',dial:'43'},
+  {code:'SE',name:'Sweden',dial:'46'},
+  {code:'NO',name:'Norway',dial:'47'},
+  {code:'DK',name:'Denmark',dial:'45'},
+  {code:'FI',name:'Finland',dial:'358'},
+  {code:'PL',name:'Poland',dial:'48'},
+  {code:'PT',name:'Portugal',dial:'351'},
+  {code:'GR',name:'Greece',dial:'30'},
+  {code:'TR',name:'Turkey',dial:'90'},
+  {code:'RU',name:'Russia',dial:'7'},
+  {code:'UA',name:'Ukraine',dial:'380'},
+  {code:'ZA',name:'South Africa',dial:'27'},
+  {code:'NG',name:'Nigeria',dial:'234'},
+  {code:'KE',name:'Kenya',dial:'254'},
+  {code:'EG',name:'Egypt',dial:'20'},
+  {code:'GH',name:'Ghana',dial:'233'},
+  {code:'JP',name:'Japan',dial:'81'},
+  {code:'CN',name:'China',dial:'86'},
+  {code:'KR',name:'South Korea',dial:'82'},
+  {code:'SG',name:'Singapore',dial:'65'},
+  {code:'PH',name:'Philippines',dial:'63'},
+  {code:'ID',name:'Indonesia',dial:'62'},
+  {code:'TH',name:'Thailand',dial:'66'},
+  {code:'VN',name:'Vietnam',dial:'84'},
+  {code:'MY',name:'Malaysia',dial:'60'},
+  {code:'PK',name:'Pakistan',dial:'92'},
+  {code:'BD',name:'Bangladesh',dial:'880'},
+  {code:'LK',name:'Sri Lanka',dial:'94'},
+  {code:'NP',name:'Nepal',dial:'977'},
+  {code:'AE',name:'UAE',dial:'971'},
+  {code:'SA',name:'Saudi Arabia',dial:'966'},
+  {code:'IL',name:'Israel',dial:'972'},
+  {code:'AR',name:'Argentina',dial:'54'},
+  {code:'CL',name:'Chile',dial:'56'},
+  {code:'CO',name:'Colombia',dial:'57'},
+  {code:'PE',name:'Peru',dial:'51'},
+  {code:'NZ',name:'New Zealand',dial:'64'},
+];
 
+/* ── STATE ── */
 const LS_CONTACTS = 'bulksender_contacts_v2';
 const LS_SESSION  = 'bulksender_session_v2';
 const LS_MSG      = 'bulksender_msg_v2';
 const LS_MODE     = 'bulksender_mode_v2';
+const LS_COUNTRY  = 'bulksender_country_v2';
 
 let contacts = [];
-let session  = []; // [{contactId, opened, response: null|'accepted'|'declined'}]
+let session  = [];
 let sessionMsg = '';
-let sendMode = 'wa'; // 'wa' | 'sms'
+let sendMode = 'wa';
+let selectedCountry = 'US';
+let editingId = null;
 
 function loadAll() {
-  try { contacts = JSON.parse(localStorage.getItem(LS_CONTACTS)) || []; } catch { contacts = []; }
-  try { session  = JSON.parse(localStorage.getItem(LS_SESSION))  || []; } catch { session  = []; }
-  try { sessionMsg = localStorage.getItem(LS_MSG) || ''; } catch { sessionMsg = ''; }
-  try { sendMode = localStorage.getItem(LS_MODE) || 'wa'; } catch { sendMode = 'wa'; }
+  try { contacts    = JSON.parse(localStorage.getItem(LS_CONTACTS)) || []; } catch { contacts = []; }
+  try { session     = JSON.parse(localStorage.getItem(LS_SESSION))  || []; } catch { session  = []; }
+  try { sessionMsg  = localStorage.getItem(LS_MSG) || ''; }                  catch { sessionMsg = ''; }
+  try { sendMode    = localStorage.getItem(LS_MODE) || 'wa'; }               catch { sendMode = 'wa'; }
+  try { selectedCountry = localStorage.getItem(LS_COUNTRY) || 'US'; }        catch { selectedCountry = 'US'; }
+}
+function saveContacts() { localStorage.setItem(LS_CONTACTS, JSON.stringify(contacts)); }
+function saveSession()  { localStorage.setItem(LS_SESSION, JSON.stringify(session)); localStorage.setItem(LS_MSG, sessionMsg); localStorage.setItem(LS_MODE, sendMode); }
+function saveCountry()  { selectedCountry = document.getElementById('country-select').value; localStorage.setItem(LS_COUNTRY, selectedCountry); updatePhoneHint(); }
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function getCountry(code) { return COUNTRIES.find(c => c.code === code) || COUNTRIES[0]; }
+
+function normalizePhone(raw, countryCode) {
+  const digits = raw.replace(/\D/g, '');
+  const dial = getCountry(countryCode).dial;
+  if (digits.startsWith(dial)) return digits;
+  return dial + digits;
 }
 
-function saveContacts() { localStorage.setItem(LS_CONTACTS, JSON.stringify(contacts)); }
-function saveSession()  { localStorage.setItem(LS_SESSION,  JSON.stringify(session));
-                          localStorage.setItem(LS_MSG, sessionMsg);
-                          localStorage.setItem(LS_MODE, sendMode); }
+function updatePhoneHint() {
+  const c = getCountry(selectedCountry);
+  document.getElementById('phone-hint').textContent = `+${c.dial} (${c.name}) prefix added automatically`;
+}
 
-function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
-
-/* ═══════════════════ INIT ═══════════════════ */
+/* ── INIT ── */
 loadAll();
+buildCountrySelect();
 renderContacts();
 renderSelectedChips();
 applyMode(sendMode);
+updatePhoneHint();
 if (session.length > 0 && sessionMsg) {
   document.getElementById('msg-text').value = sessionMsg;
   showSendResults();
 }
 
-/* ═══════════════════ TABS ═══════════════════ */
-function switchTab(tab) {
-  document.getElementById('panel-contacts').classList.toggle('active', tab === 'contacts');
-  document.getElementById('panel-message').classList.toggle('active', tab === 'message');
-  document.getElementById('tab-contacts').classList.toggle('active', tab === 'contacts');
-  document.getElementById('tab-message').classList.toggle('active', tab === 'message');
-  if (tab === 'message') renderSelectedChips();
+function buildCountrySelect() {
+  const sel = document.getElementById('country-select');
+  sel.innerHTML = COUNTRIES.map(c =>
+    `<option value="${c.code}"${c.code===selectedCountry?' selected':''}">+${c.dial} ${c.name}</option>`
+  ).join('');
 }
 
-/* ═══════════════════ CONTACTS ═══════════════════ */
+/* ── TABS ── */
+function switchTab(tab) {
+  document.getElementById('panel-contacts').classList.toggle('active', tab==='contacts');
+  document.getElementById('panel-message').classList.toggle('active', tab==='message');
+  document.getElementById('tab-contacts').classList.toggle('active', tab==='contacts');
+  document.getElementById('tab-message').classList.toggle('active', tab==='message');
+  if (tab==='message') { renderSelectedChips(); checkNewContacts(); }
+}
+
+/* ── CONTACTS ── */
 function addContact() {
   const nameEl  = document.getElementById('new-name');
   const phoneEl = document.getElementById('new-phone');
-  const name  = nameEl.value.trim();
-  const phone = phoneEl.value.replace(/\D/g,'').trim();
-
-  if (!name)           { nameEl.focus(); shake(nameEl); return; }
-  if (phone.length < 7){ phoneEl.focus(); shake(phoneEl); return; }
-
+  const name    = nameEl.value.trim();
+  if (!name) { nameEl.focus(); shake(nameEl); return; }
+  const phone = normalizePhone(phoneEl.value, selectedCountry);
+  if (phone.length < 7) { phoneEl.focus(); shake(phoneEl); return; }
   contacts.push({ id: uid(), name, phone, selected: false });
   saveContacts();
   nameEl.value = ''; phoneEl.value = ''; nameEl.focus();
@@ -641,8 +456,7 @@ function addContact() {
 
 function removeContact(id) {
   contacts = contacts.filter(c => c.id !== id);
-  // also remove from session if present
-  session = session.filter(s => s.contactId !== id);
+  session  = session.filter(s => s.contactId !== id);
   saveContacts(); saveSession();
   renderContacts(); renderSelectedChips();
   if (session.length > 0) showSendResults();
@@ -650,17 +464,17 @@ function removeContact(id) {
 
 function toggleSelect(id) {
   const c = contacts.find(c => c.id === id);
-  if (c) { c.selected = !c.selected; saveContacts(); renderContacts(); renderSelectedChips(); }
+  if (c) { c.selected = !c.selected; saveContacts(); renderContacts(); renderSelectedChips(); checkNewContacts(); }
 }
 
 function toggleSelectAll() {
-  const anyUnselected = contacts.some(c => !c.selected);
-  contacts.forEach(c => c.selected = anyUnselected);
-  saveContacts(); renderContacts(); renderSelectedChips();
+  const anyUnsel = contacts.some(c => !c.selected);
+  contacts.forEach(c => c.selected = anyUnsel);
+  saveContacts(); renderContacts(); renderSelectedChips(); checkNewContacts();
 }
 
 function confirmDeleteAll() {
-  if (contacts.length === 0) return;
+  if (!contacts.length) return;
   if (confirm('Delete ALL contacts? This cannot be undone.')) {
     contacts = []; session = []; sessionMsg = '';
     saveContacts(); saveSession();
@@ -670,107 +484,201 @@ function confirmDeleteAll() {
 }
 
 function renderContacts() {
-  const list = document.getElementById('contact-list');
+  const list  = document.getElementById('contact-list');
   const count = document.getElementById('contact-count');
   count.textContent = contacts.length + ' contact' + (contacts.length !== 1 ? 's' : '');
-
-  if (contacts.length === 0) {
+  if (!contacts.length) {
     list.innerHTML = '<div class="empty-hint">No contacts yet. Add some above!</div>';
     return;
   }
-
   list.innerHTML = contacts.map(c => `
     <div class="contact-item" id="ci-${c.id}">
-      <button class="chk ${c.selected ? 'checked' : ''}" onclick="toggleSelect('${c.id}')" title="Select for messaging">
-        <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-          <polyline points="2,7 6,11 12,3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <button class="chk ${c.selected?'checked':''}" onclick="toggleSelect('${c.id}')" title="Select for messaging">
+        <svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="contact-info">
         <div class="contact-name">${esc(c.name)}</div>
-        <div class="contact-phone">${esc(c.phone)}</div>
+        <div class="contact-phone">+${esc(c.phone)}</div>
       </div>
-      <button class="btn-danger" onclick="removeContact('${c.id}')">Remove</button>
-    </div>
-  `).join('');
+      <div class="contact-item-actions">
+        <button class="btn-sm" onclick="openEditModal('${c.id}')">Edit</button>
+        <button class="btn-danger" onclick="removeContact('${c.id}')">Remove</button>
+      </div>
+    </div>`).join('');
 }
 
-/* ═══════════════════ MODE ═══════════════════ */
+/* ── EDIT MODAL ── */
+function openEditModal(id) {
+  const c = contacts.find(x => x.id === id);
+  if (!c) return;
+  editingId = id;
+  document.getElementById('edit-name').value  = c.name;
+  document.getElementById('edit-phone').value = c.phone;
+  document.getElementById('edit-phone-hint').textContent = `Current number: +${c.phone}`;
+  document.getElementById('edit-modal').classList.add('open');
+}
+function closeEditModal(e) {
+  if (e && e.target !== document.getElementById('edit-modal')) return;
+  document.getElementById('edit-modal').classList.remove('open');
+  editingId = null;
+}
+function saveEdit() {
+  const c = contacts.find(x => x.id === editingId);
+  if (!c) return;
+  const name = document.getElementById('edit-name').value.trim();
+  if (!name) { shake(document.getElementById('edit-name')); return; }
+  const phone = normalizePhone(document.getElementById('edit-phone').value, selectedCountry);
+  if (phone.length < 7) { shake(document.getElementById('edit-phone')); return; }
+  c.name = name; c.phone = phone;
+  saveContacts();
+  renderContacts(); renderSelectedChips();
+  if (session.some(s => s.contactId === c.id)) renderSendCards();
+  document.getElementById('edit-modal').classList.remove('open');
+  editingId = null;
+}
+
+/* ── IMPORT ── */
+function importCSV(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const added = parseAndAddContacts(ev.target.result);
+    e.target.value = '';
+    renderContacts();
+    alert(added ? `Imported ${added} contact${added!==1?'s':''}!` : 'No valid contacts found in file.');
+  };
+  reader.readAsText(file);
+}
+function showPasteImport() {
+  document.getElementById('paste-input').value = '';
+  document.getElementById('paste-modal').classList.add('open');
+}
+function closePasteModal(e) {
+  if (e && e.target !== document.getElementById('paste-modal')) return;
+  document.getElementById('paste-modal').classList.remove('open');
+}
+function importPasted() {
+  const added = parseAndAddContacts(document.getElementById('paste-input').value);
+  closePasteModal();
+  renderContacts();
+  alert(added ? `Imported ${added} contact${added!==1?'s':''}!` : 'No valid contacts found.');
+}
+function parseAndAddContacts(text) {
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  let added = 0;
+  for (const line of lines) {
+    if (/^(name|phone|contact|#)/i.test(line)) continue;
+    let name = '', phone = '';
+    if (line.includes(',')) {
+      const parts = line.split(',').map(p => p.trim());
+      if (/^[\d\+]/.test(parts[0]) && parts[0].replace(/\D/g,'').length >= 6) {
+        phone = parts[0]; name = parts.slice(1).join(',').trim();
+      } else { name = parts[0]; phone = parts.slice(1).join(',').trim(); }
+    } else {
+      const m = line.match(/[\+\d][\d\s\-\(\)\.]{6,}/);
+      if (m) { phone = m[0]; name = line.replace(m[0],'').trim().replace(/^[\s,\-]+|[\s,\-]+$/g,''); }
+    }
+    phone = phone.replace(/\D/g,'');
+    if (phone.length < 7) continue;
+    phone = normalizePhone(phone, selectedCountry);
+    if (!name) name = '+' + phone;
+    if (contacts.some(c => c.phone === phone)) continue;
+    contacts.push({ id: uid(), name, phone, selected: false });
+    added++;
+  }
+  if (added) saveContacts();
+  return added;
+}
+
+/* ── MODE ── */
 function setMode(m) {
-  sendMode = m;
-  localStorage.setItem(LS_MODE, m);
+  sendMode = m; localStorage.setItem(LS_MODE, m);
   applyMode(m);
-  if (session.length > 0) renderSendCards(); // refresh open buttons
+  if (session.length) renderSendCards();
 }
-
 function applyMode(m) {
-  document.getElementById('mode-wa').className  = 'mode-btn' + (m === 'wa'  ? ' active-wa'  : '');
-  document.getElementById('mode-sms').className = 'mode-btn' + (m === 'sms' ? ' active-sms' : '');
-  const label = document.getElementById('cards-label');
-  if (label) label.textContent = m === 'sms'
+  document.getElementById('mode-wa').className  = 'mode-btn' + (m==='wa'  ? ' active-wa'  : '');
+  document.getElementById('mode-sms').className = 'mode-btn' + (m==='sms' ? ' active-sms' : '');
+  const lbl = document.getElementById('cards-label');
+  if (lbl) lbl.textContent = m==='sms'
     ? 'Tap Open → send in Android Messages · ✓ = accepted · ✕ = declined'
     : 'Tap Open → send in WhatsApp · ✓ = accepted · ✕ = declined';
 }
 
-/* ═══════════════════ MESSAGE TAB ═══════════════════ */
+/* ── MESSAGE TAB ── */
 function renderSelectedChips() {
   const sel = contacts.filter(c => c.selected);
-  const el = document.getElementById('selected-chips');
-  if (sel.length === 0) {
+  const el  = document.getElementById('selected-chips');
+  const sessionIds = new Set(session.map(s => s.contactId));
+  if (!sel.length) {
     el.innerHTML = '<span class="no-chips">No contacts selected — check contacts in the Contacts tab</span>';
   } else {
-    el.innerHTML = sel.map(c => `<span class="chip">${esc(c.name)}</span>`).join('');
+    el.innerHTML = sel.map(c => {
+      const isNew = session.length > 0 && !sessionIds.has(c.id);
+      return `<span class="chip${isNew?' new-chip':''}">${esc(c.name)}</span>`;
+    }).join('');
   }
+}
+
+function checkNewContacts() {
+  if (!session.length) { document.getElementById('new-contacts-banner').style.display='none'; return; }
+  const sessionIds = new Set(session.map(s => s.contactId));
+  const newOnes = contacts.filter(c => c.selected && !sessionIds.has(c.id));
+  const banner = document.getElementById('new-contacts-banner');
+  if (newOnes.length) {
+    document.getElementById('new-contacts-text').textContent =
+      `${newOnes.length} new contact${newOnes.length!==1?'s':''} — generate their links?`;
+    banner.style.display = 'flex';
+  } else { banner.style.display = 'none'; }
 }
 
 function generateLinks() {
   const msg = document.getElementById('msg-text').value.trim();
   const sel = contacts.filter(c => c.selected);
-
-  if (!msg)         { shake(document.getElementById('msg-text')); alert('Please type a message.'); return; }
-  if (sel.length === 0) { alert('No contacts selected. Go to the Contacts tab and check people to message.'); return; }
-
+  if (!msg)      { shake(document.getElementById('msg-text')); alert('Please type a message.'); return; }
+  if (!sel.length) { alert('No contacts selected. Go to the Contacts tab and check people to message.'); return; }
   sessionMsg = msg;
   session = sel.map(c => ({ contactId: c.id, opened: false, response: null }));
-  saveSession();
-  showSendResults();
+  saveSession(); showSendResults();
+  document.getElementById('new-contacts-banner').style.display = 'none';
+}
+
+function generateNewOnly() {
+  const msg = document.getElementById('msg-text').value.trim() || sessionMsg;
+  if (!msg) { alert('Please type a message first.'); return; }
+  const sessionIds = new Set(session.map(s => s.contactId));
+  const newOnes = contacts.filter(c => c.selected && !sessionIds.has(c.id));
+  if (!newOnes.length) return;
+  sessionMsg = msg;
+  if (!document.getElementById('msg-text').value.trim()) document.getElementById('msg-text').value = sessionMsg;
+  newOnes.forEach(c => session.push({ contactId: c.id, opened: false, response: null, isNew: true }));
+  saveSession(); showSendResults();
+  document.getElementById('new-contacts-banner').style.display = 'none';
 }
 
 function showSendResults() {
-  const resultsEl = document.getElementById('send-results');
-  resultsEl.style.display = 'flex';
-  resultsEl.style.flexDirection = 'column';
-  resultsEl.style.gap = '12px';
-  renderSendCards();
-  updateStats();
+  document.getElementById('send-results').style.display = 'block';
+  renderSendCards(); updateStats();
 }
 
 function renderSendCards() {
-  const cards = document.getElementById('send-cards');
+  const cards   = document.getElementById('send-cards');
   const encoded = encodeURIComponent(sessionMsg);
-
-  if (session.length === 0) { cards.innerHTML = ''; return; }
-
+  if (!session.length) { cards.innerHTML = ''; return; }
   cards.innerHTML = session.map((s, i) => {
     const c = contacts.find(c => c.id === s.contactId);
     if (!c) return '';
-
     const isSms = sendMode === 'sms';
-    const url = isSms
-      ? `sms:${c.phone}?body=${encoded}`
-      : `https://wa.me/${c.phone}?text=${encoded}`;
-    const btnClass = isSms ? 'open-btn sms' : 'open-btn';
-    const btnLabel = isSms ? 'SMS' : 'Open';
-
+    const url   = isSms ? `sms:${c.phone}?body=${encoded}` : `https://wa.me/${c.phone}?text=${encoded}`;
     const faded = s.opened ? 'faded' : '';
-
-    let responseBtns = '';
+    const newCls = s.isNew ? 'new-card' : '';
+    let resp = '';
     if (s.response === 'accepted') {
-      responseBtns = `<span class="response-badge accepted">✓ Accepted</span>`;
+      resp = `<span class="response-badge accepted">✓ Accepted</span>`;
     } else if (s.response === 'declined') {
-      responseBtns = `<span class="response-badge declined">✕ Declined</span>`;
+      resp = `<span class="response-badge declined">✕ Declined</span>`;
     } else {
-      responseBtns = `
+      resp = `
         <button class="icon-btn accept" onclick="setResponse(${i},'accepted')" title="Mark accepted">
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,7 6,11 12,3"/></svg>
         </button>
@@ -778,18 +686,17 @@ function renderSendCards() {
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
         </button>`;
     }
-
     return `
-      <div class="send-card ${faded}" id="sc-${i}">
+      <div class="send-card ${faded} ${newCls}" id="sc-${i}">
         <div class="send-info">
           <div class="send-name">${esc(c.name)}</div>
-          <div class="send-phone">${esc(c.phone)}</div>
+          <div class="send-phone">+${esc(c.phone)}</div>
         </div>
         <div class="send-actions">
-          ${responseBtns}
-          <a class="${btnClass}" href="${url}" target="_blank" onclick="markOpened(${i})">
+          ${resp}
+          <a class="open-btn${isSms?' sms':''}" href="${url}" target="_blank" onclick="markOpened(${i})">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            ${btnLabel}
+            ${isSms?'SMS':'Open'}
           </a>
         </div>
       </div>`;
@@ -797,57 +704,58 @@ function renderSendCards() {
 }
 
 function markOpened(i) {
-  session[i].opened = true;
-  saveSession();
+  session[i].opened = true; saveSession();
   setTimeout(() => { updateStats(); renderSendCards(); }, 1600);
 }
-
 function setResponse(i, resp) {
-  session[i].response = resp;
-  saveSession();
-  renderSendCards();
+  session[i].response = resp; saveSession(); renderSendCards(); updateStats();
 }
 
 function updateStats() {
-  const total  = session.length;
-  const opened = session.filter(s => s.opened).length;
-  const left   = total - opened;
-  document.getElementById('stat-total').textContent = total;
-  document.getElementById('stat-sent').textContent  = opened;
-  document.getElementById('stat-left').textContent  = left;
-  document.getElementById('prog-bar').style.width   = total ? Math.round((opened/total)*100)+'%' : '0%';
-  document.getElementById('all-done').style.display = (total > 0 && left === 0) ? 'block' : 'none';
+  const total    = session.length;
+  const opened   = session.filter(s => s.opened).length;
+  const accepted = session.filter(s => s.response === 'accepted').length;
+  const declined = session.filter(s => s.response === 'declined').length;
+  document.getElementById('stat-total').textContent    = total;
+  document.getElementById('stat-sent').textContent     = opened;
+  document.getElementById('stat-accepted').textContent = accepted;
+  document.getElementById('stat-declined').textContent = declined;
+  document.getElementById('prog-bar').style.width = total ? Math.round((opened/total)*100)+'%' : '0%';
+  document.getElementById('all-done').style.display = (total > 0 && opened === total) ? 'block' : 'none';
 }
 
 function resetSession() {
-  session = []; sessionMsg = '';
-  saveSession();
+  session = []; sessionMsg = ''; saveSession();
   document.getElementById('msg-text').value = '';
   document.getElementById('send-results').style.display = 'none';
+  document.getElementById('new-contacts-banner').style.display = 'none';
 }
 
-/* ═══════════════════ UTILS ═══════════════════ */
+/* ── UTILS ── */
 function esc(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
-
 function shake(el) {
   el.style.transition = 'transform 0.05s';
-  const moves = [4,-4,4,-4,0];
-  let i = 0;
+  const moves = [4,-4,4,-4,0]; let i = 0;
   const t = setInterval(() => {
     el.style.transform = `translateX(${moves[i]}px)`;
-    if (++i >= moves.length) { clearInterval(t); el.style.transform = ''; }
+    if (++i >= moves.length) { clearInterval(t); el.style.transform=''; }
   }, 55);
 }
 
-// Allow Enter to add contact
-document.getElementById('new-phone').addEventListener('keydown', e => {
-  if (e.key === 'Enter') addContact();
+/* Strip non-digits live as you type in phone fields */
+['new-phone','edit-phone'].forEach(id => {
+  document.getElementById(id).addEventListener('input', function() {
+    const cleaned = this.value.replace(/[^\d]/g,'');
+    if (this.value !== cleaned) this.value = cleaned;
+  });
 });
-document.getElementById('new-name').addEventListener('keydown', e => {
-  if (e.key === 'Enter') document.getElementById('new-phone').focus();
-});
+
+document.getElementById('new-phone').addEventListener('keydown', e => { if (e.key==='Enter') addContact(); });
+document.getElementById('new-name').addEventListener('keydown',  e => { if (e.key==='Enter') document.getElementById('new-phone').focus(); });
+document.getElementById('edit-name').addEventListener('keydown', e => { if (e.key==='Enter') document.getElementById('edit-phone').focus(); });
+document.getElementById('edit-phone').addEventListener('keydown',e => { if (e.key==='Enter') saveEdit(); });
 </script>
 </body>
 </html>
